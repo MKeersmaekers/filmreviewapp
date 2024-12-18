@@ -1,0 +1,38 @@
+<h1>{{ film.naam }} ({{ film.jaar }})</h1>
+
+<div>
+    <strong>Genre:</strong> {{ film.genre.naam }}<br>
+    {% if film.subgenre %}
+        <strong>Subgenre:</strong> {{ film.subgenre.naam }}<br>
+    {% endif %}
+</div>
+
+<div>
+    <h3>Reviews:</h3>
+    {% for review in film.reviews.all %}
+        <div>
+            <strong>{{ review.gebruiker.username }}</strong> - Rating: {{ review.rating }}<br>
+            <strong>Story:</strong> {{ review.verhaal }}<br>
+            <strong>Actors:</strong> {{ review.acteurs }}<br>
+            {% if review.visuals %}
+                <strong>Visuals:</strong> {{ review.visuals }}<br>
+            {% endif %}
+            {% if review.audio %}
+                <strong>Audio:</strong> {{ review.audio }}<br>
+            {% endif %}
+            {% if review.extra %}
+                <strong>Extra:</strong> {{ review.extra }}<br>
+            {% endif %}
+        </div>
+        <hr>
+    {% empty %}
+        <p>No reviews yet.</p>
+    {% endfor %}
+</div>
+
+<!-- Add the "Voeg Review Toe" button -->
+<div>
+    <a href="{% url 'add_review' film.pk %}" class="btn btn-secondary">Voeg Review Toe</a>
+</div>
+
+<a href="/">Back to Film List</a>

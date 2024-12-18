@@ -1,0 +1,21 @@
+<h1>Film Reviews</h1>
+
+<div style="text-align: center; margin-bottom: 20px;">
+    <button onclick="location.href='{% url 'add_film' %}'" class="btn btn-primary">Voeg Film Toe</button>
+</div>
+
+
+<div style="text-align: center; margin-bottom: 20px;">
+    <form method="GET" action="/">
+        <input type="text" name="query" placeholder="Zoek naar een film..." style="padding: 5px; width: 300px;" value="{{ request.GET.query }}">
+        <button type="submit" class="btn btn-primary">Zoeken</button>
+    </form>
+</div>
+
+<ul>
+    {% for film in films %}
+        <li><a href="/film/{{ film.id }}/">{{ film.naam }} ({{ film.jaar }})</a></li>
+    {% empty %}
+        <li>Er zijn nog geen films toegevoegd.</li>
+    {% endfor %}
+</ul>

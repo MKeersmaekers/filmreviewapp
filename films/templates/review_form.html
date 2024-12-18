@@ -1,0 +1,9 @@
+<h1>Voeg een review toe voor {{ film.naam }} ({{ film.jaar }})</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Review Toevoegen</button>
+</form>
+
+<a href="{% url 'film_detail' film.pk %}">Terug naar de film</a>
